@@ -47,6 +47,7 @@ namespace xeus
         m_handler["comm_msg"] = &xkernel_core::comm_msg;
         m_handler["kernel_info_request"] = &xkernel_core::kernel_info_request;
         m_handler["shutdown_request"] = &xkernel_core::shutdown_request;
+        m_handler["interrupt_request"] = &xkernel_core::interrupt_request;
 
         // Server bindings
         p_server->register_shell_listener(std::bind(&xkernel_core::dispatch_shell, this, _1));
@@ -175,6 +176,11 @@ namespace xeus
         auto iter = m_handler.find(msg_type);
         handler_type res = (iter == m_handler.end()) ? nullptr : iter->second;
         return res;
+    }
+
+    void xkernel_core::interrupt_request(const xmessage& request, channel c) {
+      p_interpreter->interrupt_request();
+      send_reply("interrupt_reply", xjson::object(), std::move(xjson::object()), c);
     }
 
     void xkernel_core::execute_request(const xmessage& request, channel c)

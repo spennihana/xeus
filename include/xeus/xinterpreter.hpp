@@ -53,6 +53,8 @@ namespace xeus
 
         void configure();
 
+        void interrupt_request();
+
         xjson execute_request(const std::string& code,
                               bool silent,
                               bool store_history,
@@ -98,6 +100,8 @@ namespace xeus
     private:
 
         virtual void configure_impl() = 0;
+
+        virtual void interrupt_request_impl() = 0;
 
         virtual xjson execute_request_impl(int execution_counter,
                                            const std::string& code,

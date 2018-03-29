@@ -20,6 +20,10 @@ namespace xeus
         configure_impl();
     }
 
+    void xinterpreter::interrupt_request() {
+      interrupt_request_impl();
+    }
+
     xjson xinterpreter::execute_request(const std::string& code,
                                         bool silent,
                                         bool store_history,

@@ -66,6 +66,7 @@ namespace xeus
 
         handler_type get_handler(const std::string& msg_type);
 
+        void interrupt_request(const xmessage& request, channel c);
         void execute_request(const xmessage& request, channel c);
         void complete_request(const xmessage& request, channel c);
         void inspect_request(const xmessage& request, channel c);

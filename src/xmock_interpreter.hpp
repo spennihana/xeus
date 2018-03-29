@@ -77,6 +77,10 @@ namespace xeus
         {
         }
 
+        inline void interrupt_request_impl()
+        {
+        }
+
         xcomm_manager m_comm_manager;
     };
 }
